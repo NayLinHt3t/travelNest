@@ -42,7 +42,7 @@ export default function LandingPage() {
       <header className="sticky top-0 z-40 bg-white/80 backdrop-blur border-b border-neutral-200">
         <div className="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
           <a href="#home" className="font-semibold">
-            Wander
+            TravelNest
           </a>
           <nav className="hidden sm:flex gap-6 text-sm text-neutral-600">
             <a href="#how" className="hover:text-black">
