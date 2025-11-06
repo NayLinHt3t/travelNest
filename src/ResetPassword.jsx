@@ -52,10 +52,6 @@ export default function ResetPassword() {
     <div className="min-h-screen flex items-center justify-center bg-neutral-50 p-6">
       <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-6">
         <h2 className="text-xl font-semibold mb-4">Reset your password</h2>
-        <p className="text-sm text-neutral-600 mb-4 break-words">
-          Token: {token}
-        </p>
-
         <form onSubmit={submit} className="space-y-4">
           <label className="block">
             <div className="text-sm mb-1">New password</div>
