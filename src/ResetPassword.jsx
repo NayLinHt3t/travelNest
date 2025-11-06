@@ -35,7 +35,7 @@ export default function ResetPassword() {
           body: JSON.stringify({ resetToken: token, newPassword }),
         }
       );
-      
+
       // Check if response is JSON
       const contentType = res.headers.get("content-type");
       if (!contentType || !contentType.includes("application/json")) {
@@ -44,7 +44,7 @@ export default function ResetPassword() {
         setError("Server error: Invalid response format");
         return;
       }
-      
+
       const data = await res.json();
       if (!res.ok) {
         setError(data?.message || "Failed to reset password");
