@@ -1,10 +1,16 @@
 import { useState } from "react";
+import ResetPassword from "./ResetPassword";
 
-// Clean single-file landing page for your Activities/Events app (React + Tailwind)
-// Sections: Header, Hero, How It Works, Features, Roadmap, CTA, FAQ, Contact, Footer
-
-export default function LandingPage() {
+// If the path matches /resetPassword/:token render the reset page, otherwise render the landing page.
+export default function AppRouter() {
   const [email, setEmail] = useState("");
+  const pathname =
+    typeof window !== "undefined" ? window.location.pathname : "/";
+  const resetMatch = pathname.match(/^\/resetPassword\/(.+)$/);
+  if (resetMatch) {
+    const token = decodeURIComponent(resetMatch[1]);
+    return <ResetPassword token={token} />;
+  }
 
   const notify = (e) => {
     e.preventDefault();
