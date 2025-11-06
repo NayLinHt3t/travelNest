@@ -35,6 +35,16 @@ export default function ResetPassword() {
           body: JSON.stringify({ resetToken: token, newPassword }),
         }
       );
+      
+      // Check if response is JSON
+      const contentType = res.headers.get("content-type");
+      if (!contentType || !contentType.includes("application/json")) {
+        const text = await res.text();
+        console.error("Non-JSON response:", text);
+        setError("Server error: Invalid response format");
+        return;
+      }
+      
       const data = await res.json();
       if (!res.ok) {
         setError(data?.message || "Failed to reset password");
@@ -42,6 +52,7 @@ export default function ResetPassword() {
         setMessage(data?.message || "Password has been reset successfully");
       }
     } catch (err) {
+      console.error("Reset password error:", err);
       setError(err.message || "Network error");
     } finally {
       setLoading(false);
