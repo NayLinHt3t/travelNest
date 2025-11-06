@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { useParams, Link } from "react-router-dom";
 
-export default function ResetPassword({ token }) {
+export default function ResetPassword() {
+  const { token } = useParams();
   const [newPassword, setNewPassword] = useState("");
   const [confirm, setConfirm] = useState("");
   const [loading, setLoading] = useState(false);
@@ -24,7 +26,9 @@ export default function ResetPassword({ token }) {
     setLoading(true);
     try {
       const res = await fetch(
-        `/api/auth/reset-password/${encodeURIComponent(token)}`,
+        `https://underground-brittni-tripnest-82c64bf9.koyeb.app/api/auth/reset-password/${encodeURIComponent(
+          token
+        )}`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -87,9 +91,9 @@ export default function ResetPassword({ token }) {
               {loading ? "Saving..." : "Set new password"}
             </button>
 
-            <a href="/" className="text-sm text-neutral-600 hover:underline">
+            <Link to="/" className="text-sm text-neutral-600 hover:underline">
               Back home
-            </a>
+            </Link>
           </div>
         </form>
       </div>

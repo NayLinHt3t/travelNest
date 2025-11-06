@@ -1,16 +1,9 @@
 import { useState } from "react";
+import { Routes, Route } from "react-router-dom";
 import ResetPassword from "./ResetPassword";
 
-// If the path matches /resetPassword/:token render the reset page, otherwise render the landing page.
-export default function AppRouter() {
+function LandingPage() {
   const [email, setEmail] = useState("");
-  const pathname =
-    typeof window !== "undefined" ? window.location.pathname : "/";
-  const resetMatch = pathname.match(/^\/resetPassword\/(.+)$/);
-  if (resetMatch) {
-    const token = decodeURIComponent(resetMatch[1]);
-    return <ResetPassword token={token} />;
-  }
 
   const notify = (e) => {
     e.preventDefault();
@@ -255,5 +248,14 @@ export default function AppRouter() {
         </div>
       </footer>
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/resetPassword/:token" element={<ResetPassword />} />
+    </Routes>
   );
 }
